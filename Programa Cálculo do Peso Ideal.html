@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-br">
+   <meta charset="UTF-8">
+   <meta name="viewport" content= "width = device-width initial-scale=1.0">
+   <title>Peso ideal</title>
+   
+   <body>
+         <h1>Programa Cáculo do Peso Ideal</h1>
+         <p>Nome: <input type="text" id="inN"></p>
+         <p> sexo : <input type="radio" id="inM" > Masculino <input type="radio" id="inF"> Feminino </p>
+         <p> Alura:  <input type="text" id="inAl"></p>
+         <input type="button" value="Calcular Peso ideal" id="btP">
+         <input type="button" value="Limpar Campos" id="btL">
+         <h3 id="outResp"></h3>
+   </body>
+<script>
+        function PesoIdeal(){
+        var inN = document.getElementById("inN")
+        var inM = document.getElementById("inM");
+        var inF = document.getElementById("inF");
+        var inAl= document.getElementById("inAl")
+        var outResp = document.getElementById("outResp");
+        
+        var nome = inN.value;
+        var M = inM.checked;
+        var F = inF.checked;
+        var Al=Number(inAl.value); 
+        
+        if(nome == "" || (M ==false && F == false)){alert("Por favor, informe o nome e selecione o sexo...")}
+        if(Al ==0 || isNaN(Al)){ alert=("Informe a altura corretamente ..."); inAl.focus(); return;}
+        if (M){ var peso = 22*Math.pow(Al,2);}
+        if (F){ var peso = 21*Math.pow(Al,2);}
+        outResp.textContent=nome + " Seu Peso  Ideal é: " + peso.toFixed(3) + "kg";
+        }
+        var btP = document.getElementById("btP");
+        btP.addEventListener("click",PesoIdeal);
+        
+        function LimparTela(){
+        
+        document.getElementById("inN").value = "";
+        document.getElementById("inM").checked = false;
+        document.getElementById("inF").checked = false;
+        document.getElementById("inAl").value = "";
+        document.getElementById("outResp").textContent="";
+        document.getElementById("inN").focus();
+   
+        }
+        var btL = document.getElementById("btL");
+        btL.addEventListener("click",LimparTela)
+</script>
+</html>
